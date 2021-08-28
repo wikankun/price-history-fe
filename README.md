@@ -1,9 +1,9 @@
-# React.js CRUD App with React Router & Axios
+# Price History Front End using React
 
 Build a React.js CRUD Application to consume Web API, display and modify data with Router, Axios & Bootstrap.
 
 React Item Application in that:
-- Each Item has id, name, url, published status.
+- Each Item has id, name, and url.
 - We can create, retrieve, update, delete Items.
 - There is a Search bar for finding Items by name.
 
