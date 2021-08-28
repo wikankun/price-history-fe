@@ -1,0 +1,31 @@
+.list {
+  text-align: left;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item:hover {
+  left: -2px;
+}
+
+.submit-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.edit-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.item-info {
+  max-width: 800px;
+  margin: auto;
+}
+
+a[target='_blank']::after {
+  content: '\2197';
+}
