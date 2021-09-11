@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Footer from './footer'
 
 import AddItem from "./components/add-item.component";
 import EditItem from "./components/edit-item.component";
@@ -38,6 +39,8 @@ class App extends Component {
             <Route path="/items/:id" component={ItemInfo} />
           </Switch>
         </div>
+
+        <Footer/>
       </div>
     );
   }
