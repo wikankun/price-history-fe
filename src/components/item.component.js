@@ -49,6 +49,18 @@ export default class Item extends Component {
       });
   }
 
+  async updatePrice(id) {
+    ItemDataService.updatePriceHistory(id)
+      .then(response => {
+        this.setState({
+          message: "The price was updated successfully!"
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
   render() {
     const { currentItem, currentPriceHistory } = this.state;
 
@@ -95,6 +107,15 @@ export default class Item extends Component {
               </div>
             )}
 
+            <div>
+              <button
+                type="button"
+                onClick={() => this.updatePrice(currentItem.id)}
+                className="badge badge-warning"
+              >
+                Update Price Now
+              </button>
+            </div>
           </div>
         ) : (
           <div>

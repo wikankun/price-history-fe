@@ -13,6 +13,10 @@ class ItemDataService {
     return http.get(`/price/${id}`);
   }
 
+  updatePriceHistory(id) {
+    return http.post(`/price/${id}`);
+  }
+
   create(data) {
     return http.post("/item", data);
   }
