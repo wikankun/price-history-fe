@@ -40,9 +40,11 @@ export default class Item extends Component {
           let date = new Date(Date.parse(ph.created_at))
           rows.push([date, ph.price])
         });
-        this.setState({
-          currentPriceHistory: [columns, ...rows]
-        });
+        if (rows.length > 0) {
+          this.setState({
+            currentPriceHistory: [columns, ...rows]
+          });
+        }
       })
       .catch(e => {
         console.log(e);
@@ -77,33 +79,35 @@ export default class Item extends Component {
 
             <h4>Price History</h4>
             {currentPriceHistory ? (
-              <Chart
-                // width={'600px'}
-                height={'400px'}
-                chartType="Line"
-                loader={<div>Loading Chart</div>}
-                data={currentPriceHistory}
-                options={{
-                  axes: {
-                    y: {
-                      0: {
-                        label: 'Price (IDR)'
+              <div className="item-price">
+                <Chart
+                  // width={'600px'}
+                  height={'400px'}
+                  chartType="Line"
+                  loader={<div>Loading Chart</div>}
+                  data={currentPriceHistory}
+                  options={{
+                    axes: {
+                      y: {
+                        0: {
+                          label: 'Price (IDR)'
+                        },
                       },
+                      x: {
+                        0: {side: 'top'}
+                      }
                     },
-                    x: {
-                      0: {side: 'top'}
+                    legend: {
+                      position: 'none',
                     }
-                  },
-                  legend: {
-                    position: 'none',
-                  }
-                }}
-                rootProps={{ 'data-testid': '1' }}
-              />
+                  }}
+                  rootProps={{ 'data-testid': '1' }}
+                />
+              </div>
             ) : (
               <div>
                 <br />
-                <p>Price History Loading...</p>
+                <p>Price History not available yet...</p>
               </div>
             )}
 

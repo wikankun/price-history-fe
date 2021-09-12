@@ -26,6 +26,10 @@
   margin: auto;
 }
 
+.item-price {
+  margin: 20px 0px;
+}
+
 a[target='_blank']::after {
   content: '\2197';
 }

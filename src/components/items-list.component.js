@@ -133,16 +133,16 @@ export default class ItemsList extends Component {
               <div>
                 <label>
                   <strong>Name:</strong>
-                </label>{" "}
-                <br/>
-                {currentItem.name}
+                </label>
+                <p>{currentItem.name}</p>
               </div>
               <div>
                 <label>
                   <strong>URL:</strong>
-                </label>{" "}
-                <br/>
-                {currentItem.url} <a href={currentItem.url} target="_blank" rel="noreferrer noopener"> </a>
+                </label>
+                <p>
+                  {currentItem.url} <a href={currentItem.url} target="_blank" rel="noreferrer noopener"> </a>
+                </p>
               </div>
 
               <div>
