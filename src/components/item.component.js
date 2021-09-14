@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Chart from "react-google-charts";
+import Chart from "react-apexcharts";
 import ItemDataService from "../services/item.service";
+import { Link } from "react-router-dom";
 
 export default class Item extends Component {
   constructor(props) {
@@ -8,7 +9,38 @@ export default class Item extends Component {
     this.getItem = this.getItem.bind(this);
     this.getPriceHistory = this.getPriceHistory.bind(this);
 
-    this.state = {};
+    this.state = {
+      message: "",
+      options: {
+        colors: ["#343a40"],
+        xaxis: {
+          type: "datetime",
+          tooltip: {
+            enabled: false,
+          }
+        },
+        yaxis: {
+          title: {
+            text: "Price (IDR)"
+          },
+          labels: {
+            formatter: function (value) {
+              return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            }
+          }
+        },
+        tooltip: {
+          x: {
+            format: "HH:mm dd MMM yyyy"
+          },
+          y: {
+            formatter: function (value) {
+              return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            }
+          }
+        },
+      },
+    };
   }
 
   componentDidMount() {
@@ -31,18 +63,15 @@ export default class Item extends Component {
   async getPriceHistory(id) {
     ItemDataService.getPriceHistory(id)
       .then(response => {
-        const columns = [
-          { type: 'datetime', label: 'Time' },
-          { type: 'number', label: 'Price' }
-        ];
         let rows = [];
         response.data.forEach(ph => {
-          let date = new Date(Date.parse(ph.created_at))
-          rows.push([date, ph.price])
+          let date = new Date(ph.created_at)
+          rows.push({x: date, y: ph.price})
         });
+        let res = [{data: rows, name: "Price"}]
         if (rows.length > 0) {
           this.setState({
-            currentPriceHistory: [columns, ...rows]
+            series: res
           });
         }
       })
@@ -64,7 +93,7 @@ export default class Item extends Component {
   }
 
   render() {
-    const { currentItem, currentPriceHistory } = this.state;
+    const { currentItem, series, options } = this.state;
 
     return (
       <div>
@@ -78,30 +107,13 @@ export default class Item extends Component {
             </div>
 
             <h4>Price History</h4>
-            {currentPriceHistory ? (
+            {series ? (
               <div className="item-price">
                 <Chart
-                  // width={'600px'}
-                  height={'400px'}
-                  chartType="Line"
-                  loader={<div>Loading Chart</div>}
-                  data={currentPriceHistory}
-                  options={{
-                    axes: {
-                      y: {
-                        0: {
-                          label: 'Price (IDR)'
-                        },
-                      },
-                      x: {
-                        0: {side: 'top'}
-                      }
-                    },
-                    legend: {
-                      position: 'none',
-                    }
-                  }}
-                  rootProps={{ 'data-testid': '1' }}
+                  options={options}
+                  series={series}
+                  type="line"
+                  height="400"
                 />
               </div>
             ) : (
@@ -112,13 +124,20 @@ export default class Item extends Component {
             )}
 
             <div>
+              <Link
+                to={"/items/" + currentItem.id + "/edit"}
+                className="btn btn-sm btn-secondary"
+              >
+                Edit
+              </Link>
               <button
                 type="button"
                 onClick={() => this.updatePrice(currentItem.id)}
-                className="badge badge-warning"
+                className="btn btn-sm btn-secondary"
               >
                 Update Price Now
               </button>
+              <p>{this.state.message}</p>
             </div>
           </div>
         ) : (

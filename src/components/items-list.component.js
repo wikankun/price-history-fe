@@ -148,16 +148,13 @@ export default class ItemsList extends Component {
               <div>
                 <Link
                   to={"/items/" + currentItem.id}
-                  className="badge badge-info"
+                  className="btn btn-sm btn-secondary"
                 >
-                  Description
+                  Price History
                 </Link>
-              </div>
-
-              <div>
                 <Link
                   to={"/items/" + currentItem.id + "/edit"}
-                  className="badge badge-warning"
+                  className="btn btn-sm btn-secondary"
                 >
                   Edit
                 </Link>

@@ -7,8 +7,14 @@
 .list-group-item {
   cursor: pointer;
 }
+.list-group-item.active {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
 .list-group-item:hover {
   left: -2px;
+  background-color: #343a40;
+  color: #fff;
 }
 
 .submit-form {
@@ -42,4 +48,9 @@ a[target='_blank']::after {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.btn-sm {
+  min-width: 100px;
+  margin: 5px;
 }

@@ -20,8 +20,8 @@ class App extends Component {
           <Switch>
             <Route exact path={["/", "/items"]} component={ItemsList} />
             <Route exact path="/add" component={AddItem} />
-            <Route path="/items/:id" component={ItemInfo} />
             <Route path="/items/:id/edit" component={EditItem} />
+            <Route path="/items/:id" component={ItemInfo} />
           </Switch>
         </div>
 
