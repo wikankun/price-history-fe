@@ -7,12 +7,13 @@
 .list-group-item {
   cursor: pointer;
 }
+
 .list-group-item.active {
   background-color: #6c757d;
   border-color: #6c757d;
 }
+
 .list-group-item:hover {
-  left: -2px;
   background-color: #343a40;
   color: #fff;
 }
@@ -37,7 +38,7 @@
 }
 
 a[target='_blank']::after {
-  content: '\2197';
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
 }
 
 .footer{

@@ -17,6 +17,11 @@ const Header = () => (
         Add Item
         </Link>
       </li>
+      <li className="nav-item">
+        <a class="nav-link" href="http://saweria.co/wikan">
+          Donate
+        </a>
+      </li>
     </div>
   </nav>
 );
